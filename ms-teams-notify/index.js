@@ -32,7 +32,11 @@ try {
 	  section1['facts'].push(fact1)
 	  section1['facts'].push(fact2)
 	  section1['activityImage'] = `https://github.com/${process.env.GITHUB_ACTOR}.png?size=48`
-	  section1['activityText'] = github.context.payload.head_commit.message
+	  if ( ${process.env.GITHUB_EVENT_NAME} === "push" ) { 
+	   section1['activityText'] = github.context.payload.head_commit.message
+	  } else {
+	   section1['activityText'] = github.context.payload.pull_request.title
+	  }
 	  section1['activityTitle'] = process.env.GITHUB_ACTOR
 	  jsondata['sections'].push(section1)
 	  
