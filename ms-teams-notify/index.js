@@ -23,6 +23,10 @@ try {
 		'name': 'Commit SHA',
 		'value': process.env.GITHUB_SHA
 	  }
+	  var fact3 = {
+		'name': 'Message',
+		'value': mymsg
+	  }
 	  jsondata['potentialAction'] = []
 	  jsondata['potentialAction'].push(action1)
 	  
@@ -31,6 +35,7 @@ try {
 	  section1['facts'] = []
 	  section1['facts'].push(fact1)
 	  section1['facts'].push(fact2)
+	  section1['facts'].push(fact3)
 	  section1['activityImage'] = `https://github.com/${process.env.GITHUB_ACTOR}.png?size=48`
 	  if ( github.event_name === "push" ) { 
 	   section1['activityText'] = github.context.payload.head_commit.message
